@@ -25,7 +25,29 @@ public class Account {
     private String emailId;
     private String accountType;
     private double openingBalance;
+    private double minBalance = 50;
     private double currentBalance;
     private String openingTimestamp;
     private List<TransactionRef> transactions;
+
+    // private synchronized boolean withdraw(double amount, String transactionId){
+    //        if(this.currentBalance - amount < this.minBalance){
+    //             return false;
+    //        }else {
+    //         TransactionRef transactionRef = new TransactionRef();
+    //         transactionRef.setId(transactionId);
+    //         transactionRef.setType("debit");
+    //         transactions.add(transactionRef);
+    //         this.currentBalance = this.currentBalance - amount;
+    //         return true;
+    //        }
+    // }
+
+    // private boolean deposit(double amount, String transactionId){
+    //     TransactionRef transactionRef = new TransactionRef();
+    //     transactionRef.setId(transactionId);
+    //     transactionRef.setType("credit");
+    //     transactions.add(transactionRef);
+    //     this.currentBalance = this.currentBalance + amount;
+    // }
 }
