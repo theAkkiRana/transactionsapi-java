@@ -11,12 +11,12 @@ else we can update these values in the application.properties files and DTO file
 
 ## implementation
 endpoints:
-Create new account:     localhost:8080/v1/bankaccount/      POST
-fetch all accounts:     localhost:8080/v1/bankaccount/      GET
-fetch specific account: localhost:8080/v1/bankaccount/{id}  GET
-
-create new account with parameters:
-{
+Create new account:     localhost:8080/v1/bankaccount/      POST\
+fetch all accounts:     localhost:8080/v1/bankaccount/      GET\
+fetch specific account: localhost:8080/v1/bankaccount/{id}  GET\
+\
+create new account with parameters:\
+{\
     "firstName": "akshat", -> string, required
     "middleName": "singh", -> string, optional
     "lastName": "rana", -> string, required
