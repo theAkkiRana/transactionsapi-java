@@ -8,6 +8,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 import java.util.List;
+// import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import com.rabo.innovation.transactions.model.TransactionRef;
 
@@ -28,26 +29,7 @@ public class Account {
     private double minBalance = 50;
     private double currentBalance;
     private String openingTimestamp;
+    // @DBRef
     private List<TransactionRef> transactions;
 
-    // private synchronized boolean withdraw(double amount, String transactionId){
-    //        if(this.currentBalance - amount < this.minBalance){
-    //             return false;
-    //        }else {
-    //         TransactionRef transactionRef = new TransactionRef();
-    //         transactionRef.setId(transactionId);
-    //         transactionRef.setType("debit");
-    //         transactions.add(transactionRef);
-    //         this.currentBalance = this.currentBalance - amount;
-    //         return true;
-    //        }
-    // }
-
-    // private boolean deposit(double amount, String transactionId){
-    //     TransactionRef transactionRef = new TransactionRef();
-    //     transactionRef.setId(transactionId);
-    //     transactionRef.setType("credit");
-    //     transactions.add(transactionRef);
-    //     this.currentBalance = this.currentBalance + amount;
-    // }
 }

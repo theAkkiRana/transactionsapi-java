@@ -18,8 +18,8 @@ import com.rabo.innovation.transactions.model.CreateAccountRequest;
 import com.rabo.innovation.transactions.model.Account;
 import com.rabo.innovation.transactions.service.AccountService;
 
-@RestController
 @Validated
+@RestController
 @RequestMapping("/v1/bankaccount")
 public class AccountController {
     

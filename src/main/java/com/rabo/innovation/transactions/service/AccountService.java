@@ -37,7 +37,7 @@ public class AccountService {
 
     //method to fetch individual account details, to be used by individual users
     public Account fetchAccount(String accountId){
-        return this.accountRepo.findById(accountId).orElse(null);
+        return this.accountRepo.findById(accountId).get();
     }
 
     //method to check if individual debit is allowed

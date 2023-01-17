@@ -57,8 +57,7 @@ public class CreateAccountRequest {
      * initial opening balance given to the account
      */
     @DecimalMax(value = "999999.0", message = "INITIAL_BALANCE_TOO_HIGH") 
-    @DecimalMin(value = "0.0", message = "INITIAL_BALANCE_TOO_LOW")
-    @NotNull(message = "SECURITIES_ACCOUNT_NUM_MISSING")
+    @DecimalMin(value = "50.0", message = "INITIAL_BALANCE_TOO_LOW")
     private double balance;
     
 }

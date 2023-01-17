@@ -22,14 +22,14 @@ import lombok.Data;
 @Data 
 public class TransactionRequest {
 
-    @NotBlank(message = "ACCOUNT_NUMBER_MISSING")
-    @NotNull(message = "ACCOUNT_NUMBER_MISSING")
-    @Pattern(regexp="^RABO[a-z0-9{32}]*$",message = "ACCOUNT_NUMBER_INVALID")
+    @NotBlank(message = "INITIATOR_ACCOUNT_NUMBER_MISSING")
+    @NotNull(message = "INITIATOR_ACCOUNT_NUMBER_MISSING")
+    @Pattern(regexp="^RABO[a-z0-9{32}]*$",message = "INITIATOR_ACCOUNT_NUMBER_INVALID")
     private String initiatorAccountNumber;
 
-    @NotBlank(message = "ACCOUNT_NUMBER_MISSING")
-    @NotNull(message = "ACCOUNT_NUMBER_MISSING")
-    @Pattern(regexp="^RABO[a-z0-9{32}]*$",message = "ACCOUNT_NUMBER_INVALID")
+    @NotBlank(message = "RECIEVER_ACCOUNT_NUMBER_MISSING")
+    @NotNull(message = "RECIEVER_ACCOUNT_NUMBER_MISSING")
+    @Pattern(regexp="^RABO[a-z0-9{32}]*$",message = "RECIEVER_ACCOUNT_NUMBER_INVALID")
     private String recieverAccountNumber;
     
     @DecimalMax(value = "999999.0", message = "AMOUNT_TOO_HIGH") 

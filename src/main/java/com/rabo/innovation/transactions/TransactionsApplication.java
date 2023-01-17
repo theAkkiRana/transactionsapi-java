@@ -8,14 +8,14 @@ import com.rabo.innovation.transactions.repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
-
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 
-
-@EnableMongoRepositories
-@SpringBootApplication
-public class TransactionsApplication extends SpringBootServletInitializer {
+@SpringBootApplication(exclude = { MongoAutoConfiguration.class })
+@EnableAutoConfiguration
+public class TransactionsApplication{
 
 	@Autowired
     AccountRepo accountRepo;
@@ -25,16 +25,6 @@ public class TransactionsApplication extends SpringBootServletInitializer {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TransactionsApplication.class, args);
-	}
-
-	/**
-	 * Method to disable to auto configuration
-	 *
-	 * @param applicationBuilder
-	 */
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder applicationBuilder) {
-		return applicationBuilder.sources(TransactionsApplication.class);
 	}
 
 }

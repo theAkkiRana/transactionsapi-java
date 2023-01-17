@@ -2,7 +2,8 @@ package com.rabo.innovation.transactions.exceptionhadler;
 
 import java.util.*;
 import java.util.stream.Collectors;
- 
+import com.rabo.innovation.transactions.constant.ErrorKeys;
+import com.rabo.innovation.transactions.constant.Constants;
 import org.springframework.http.*;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.lang.IllegalArgumentException;
 import java.lang.IllegalStateException;
 
+import org.springframework.web.bind.annotation.RestController;
 import com.rabo.innovation.transactions.model.Error;
 import com.rabo.innovation.transactions.model.Errors;
 import org.springframework.validation.ObjectError;
@@ -20,55 +22,21 @@ import org.springframework.validation.ObjectError;
  * To Handle Springboot validation errors
  */
 @ControllerAdvice
+@RestController
 public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
- 
-    // @Override
-    // protected ResponseEntity<Object> handleMethodArgumentNotValid(
-    //         MethodArgumentNotValidException ex,
-    //         HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-             
-    //     // Map<String, Object> responseBody = new LinkedHashMap<>();
-    //     // responseBody.put("timestamp", new Date());
-    //     // responseBody.put("status", status.value());
-         
-    //     // List<String> errors = ex.getBindingResult().getFieldErrors()
-    //     //     .stream()
-    //     //     .map(x -> x.getDefaultMessage())
-    //     //     .collect(Collectors.toList());
-         
-    //     // responseBody.put("errors", errors);
-         
-    //     // return new ResponseEntity<>(responseBody, headers, status);
-
-    //     Map<String, Object> response = new HashMap<>();
-    //     response.put("message", "Required request body is missing");
-
-    //     return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
-    // }
-
-    @ExceptionHandler(value = { IllegalArgumentException.class, IllegalStateException.class })
-    protected ResponseEntity<Object> handleConflict(
-        RuntimeException ex, WebRequest request, HttpStatusCode status) {
-        Map<String, Object> responseBody = new LinkedHashMap<>();
-        responseBody.put("timestamp", new Date());
-        responseBody.put("status", "400");
-         
-        System.out.println(ex.getMessage());
-        HttpHeaders headers = new HttpHeaders();
-        return new ResponseEntity<>(responseBody, headers, status);
-    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-             HttpHeaders headers, HttpStatusCode status, WebRequest request) {
-        System.out.println("----------");
-        System.out.println(ex);
-        System.out.println("----------");
+             HttpHeaders headers, HttpStatus status, WebRequest request) {
         List<Error> errorList = new ArrayList<Error>();
         Errors errors = new Errors();
-        for(ObjectError objerror : ex.getBindingResult().getAllErrors()) {
+        String traceId = request.getHeader(Constants.TRACE_ID);
+        for(ObjectError err : ex.getBindingResult().getAllErrors()) {
             Error error = new Error();
-            error.setMessage(objerror.getDefaultMessage());
+            error.setCode(ErrorKeys.valueOf(err.getDefaultMessage()).getErrorCode());
+            error.setMessage(ErrorKeys.valueOf(err.getDefaultMessage()).getErrorMessage());
+            error.setStatus(ErrorKeys.valueOf(err.getDefaultMessage()).getErrorStatus());
+            error.setTraceId(traceId);
             errorList.add(error);
         }
         errors.setErrors(errorList);

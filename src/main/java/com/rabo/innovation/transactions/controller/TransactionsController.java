@@ -12,17 +12,18 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import org.springframework.web.bind.annotation.PathVariable;
-import javax.validation.ConstraintViolationException;
-import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.ResponseStatus;
+// import javax.validation.ConstraintViolationException;
+// import org.springframework.web.bind.annotation.ExceptionHandler;
+// import org.springframework.web.bind.annotation.ResponseStatus;
 
 import com.rabo.innovation.transactions.model.TransactionRequest;
 import com.rabo.innovation.transactions.model.Transaction;
 import com.rabo.innovation.transactions.service.TransactionsService;
 
-@RestController
 @Validated
+@RestController
 @RequestMapping("/v1/transaction")
 public class TransactionsController {
     
@@ -54,9 +55,9 @@ public class TransactionsController {
 		   .body(transactionsService.fetchTransaction(transactionId));
 	}
 
-	@ExceptionHandler(ConstraintViolationException.class)
-	@ResponseStatus(HttpStatus.BAD_REQUEST)
-	ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
-	  return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
-	}
+	// @ExceptionHandler(ConstraintViolationException.class)
+	// @ResponseStatus(HttpStatus.BAD_REQUEST)
+	// ResponseEntity<String> handleConstraintViolationException(ConstraintViolationException e) {
+	//   return new ResponseEntity<>("not valid due to validation error: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+	// }
 }

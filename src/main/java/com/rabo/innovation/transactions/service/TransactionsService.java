@@ -67,7 +67,7 @@ public class TransactionsService {
 
     //method to fetch individual account details, to be used by individual users
     public Transaction fetchTransaction(String transactionId){
-        return this.transactionRepo.findById(transactionId).orElse(null);
+        return this.transactionRepo.findById(transactionId).orElse(new Transaction());
     }
 
     private void updateAccount(String accountNum, double amount, String transactionType, String transactionId){
