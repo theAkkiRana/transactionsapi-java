@@ -17,12 +17,6 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @EnableAutoConfiguration
 public class TransactionsApplication{
 
-	@Autowired
-    AccountRepo accountRepo;
-
-	@Autowired
-    TransactionRepo transactionRepo;
-
 	public static void main(String[] args) {
 		SpringApplication.run(TransactionsApplication.class, args);
 	}
