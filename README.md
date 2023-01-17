@@ -40,7 +40,7 @@ create new transaction with parameters:\
     "amount": 110, -> required\
     "message": "message for first transaction 20 euro", -> optional\
     "reference": "reference for first transaction 20 euro" -> optional\
-}\
+}
 
 ## implementation for transaction
 check if balance allows transaction\
