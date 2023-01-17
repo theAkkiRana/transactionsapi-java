@@ -2,12 +2,16 @@
 java based repository to create transactions based API for banks 
 
 ## pre requisites
+install java 17 on local
 need to have mongo db installed on localserver
 on port 27017
 with DB name : myTestDb1
 and Documents : account and transaction
 
 else we can update these values in the application.properties files and DTO files
+
+## starting API
+mvn spring-boot:run
 
 ## implementation
 endpoints:\
@@ -37,7 +41,7 @@ create new transaction with parameters:\
     "message": "message for first transaction 20 euro", -> optional\
     "reference": "reference for first transaction 20 euro" -> optional\
 }\
-\
+
 ## implementation for transaction
 check if balance allows transaction\
 create new transaction\
